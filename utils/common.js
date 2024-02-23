@@ -6,6 +6,8 @@ const region = process.env.AWS_BUCKET_REGION;
 const accessKeyId = process.env.AWS_ACCESS_KEY;
 const secretAccessKey = process.env.AWS_SECRET_KEY;
 const scanFolder = process.env.SCAN_FOLDER;
+const augmentedFolder = process.env.AUGMENTED_FOLDER;
+
 const caseFolder = process.env.CASE_FOLDER;
 const SITE_IMAGE_URL = process.env.SITE_IMAGE_URL;
 const s3 = new aws.S3({
@@ -53,13 +55,17 @@ var GetOrthoData = async () => {
   ScanFile = await GetOrthoFiles(scanFolder);
   let CaseFile = [];
   CaseFile = await GetOrthoFiles(caseFolder);
+  let AugmentedFile = [];
+  AugmentedFile = await GetOrthoFiles(augmentedFolder);
+
   const FinalData = [
     {
       Scan: { data: ScanFile, count: ScanFile.length },
       Case: { data: CaseFile, count: CaseFile.length },
+      Augmented: { data: AugmentedFile, count: AugmentedFile.length },
       All: {
-        data: [...CaseFile, ...ScanFile],
-        count: CaseFile.length + ScanFile.length,
+        data: [...CaseFile, ...ScanFile, ...AugmentedFile],
+        count: CaseFile.length + ScanFile.length + AugmentedFile.length,
       },
     },
   ];
