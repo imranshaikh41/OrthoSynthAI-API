@@ -60,11 +60,18 @@ var GetOrthoData = async () => {
 
   const FinalData = [
     {
-      Scan: { data: ScanFile, count: ScanFile.length },
-      Case: { data: CaseFile, count: CaseFile.length },
-      Augmented: { data: AugmentedFile, count: AugmentedFile.length },
+      // Scan: { data: ScanFile, count: ScanFile.length },
+      // Case: { data: CaseFile, count: CaseFile.length },
+      // Augmented: { data: AugmentedFile, count: AugmentedFile.length },
+      // All: {
+      //   data: [...CaseFile, ...ScanFile, ...AugmentedFile],
+      //   count: CaseFile.length + ScanFile.length + AugmentedFile.length,
+      // },
+
+      Scan: { count: ScanFile.length },
+      Case: { count: CaseFile.length },
+      Augmented: { count: AugmentedFile.length },
       All: {
-        data: [...CaseFile, ...ScanFile, ...AugmentedFile],
         count: CaseFile.length + ScanFile.length + AugmentedFile.length,
       },
     },
